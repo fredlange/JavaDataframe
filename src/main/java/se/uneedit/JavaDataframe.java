@@ -42,7 +42,7 @@ public class JavaDataframe {
         int Row;
         float data;
 
-        public element(int col, int row, float data) {
+        private element(int col, int row, float data) {
             Col = col;
             Row = row;
             this.data = data;
@@ -60,8 +60,8 @@ public class JavaDataframe {
 
     }
 
-    ArrayList<col> columns = new ArrayList<col>();
-    ArrayList<element> elements = new ArrayList<element>();
+    private ArrayList<col> columns = new ArrayList<col>();
+    private ArrayList<element> elements = new ArrayList<element>();
 
     public JavaDataframe(String[] cols, Float[][] initialData){
         for(int i = 0 ; i < cols.length ; i++){
@@ -74,13 +74,12 @@ public class JavaDataframe {
         }
     }
 
-    public col[] getColumns() {
+    private col[] getColumns() {
         ArrayList cols = this.columns;
-        col[] colArray = (col[]) cols.toArray(new col[cols.size()]);
-        return colArray;
+        return (col[]) cols.toArray(new col[cols.size()]);
     }
 
-    public String getColumnName(int colId){
+    private String getColumnName(int colId){
         for(col c : getColumns()){
             if (c.id == colId){
                 return c.name;
@@ -93,7 +92,7 @@ public class JavaDataframe {
         return elements;
     }
 
-    public float getElement(int row, int col){
+    private float getElement(int row, int col){
         //TODO May use sorting to speed this up.
         for(element ele : getElements()){
             if(ele.Col == col && ele.Row == row){
@@ -141,7 +140,9 @@ public class JavaDataframe {
         String APIurl = "http://chartapi.finance.yahoo.com/instrument/1.0/AAPL/chartdata;type=quote;range=10d/csv";
         Float[][] initStringData = testData.testData.getCSVFromUrl(APIurl); // NOTICE: DYNAMIC DATA!!!
         JavaDataframe myDF = new JavaDataframe(new String[] {"timestam", "open", "close", "high", "low", "volume"}, initStringData);
-        //System.out.println("FOUND : " + myDF.getElement(10,5));
+
+        // Following test should be moved into Unit test folder.
+        System.out.println("FOUND : " + myDF.getElement(10,5));
         System.out.println("ROW : " + myDF.getRowById(0));
         System.out.println("VOLUME : " + myDF.getRowById(0).get("volume"));
 
