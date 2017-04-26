@@ -4,6 +4,6 @@ Create a dataframe object from a string array containing column names, and a flo
 
 Some psudo code:
 
-<code>JavaDataframe({col1, col2, col3}, {{1,2,3},{4,5,6},{7,8,9})</code>
+<code>JavaDataframe({col1, col2, col3}, {{1,2,3},{4,5,6},{7,8,9}})</code>
 
 Gives a matrix structure with columns "col1", "col2", "col3".
